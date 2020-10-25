@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./fontawesome/css/all.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Righteous&display=swap" rel="stylesheet">
+  <style>
+    body{
+      margin: 0%;
+      padding: 0%;
+      border: none;
+
+    }
+    input{
+      border: 1px solid rgb(151, 151, 151);
+      border-radius: 50px 0px 0px 50px;
+      width: 300px;
+      height: 70px;
+      font-size: 20px;
+      outline: none;
+      text-align: center;
+      box-shadow: inset 6px 6px 7px 5px grey;
+    }
+    #container{
+      
+      height: 500px;
+      width: 850px;
+      font-family: 'Piedra', cursive;
+      font-size: 50px;
+      background-color: rgb(226, 226, 226);
+      display: flex;
+      justify-content: flex-start;
+      padding: 20px;
+      position: relative;
+    }
+    button{
+      margin-top: -7px;
+      border: 1px solid rgb(149, 149, 149);
+      width: 100px;
+      height: 75px;
+      outline: none;
+      background: linear-gradient(white,rgb(211, 211, 211));
+      box-shadow: 0px 5px 0px 2px rgb(85, 85, 85);
+    }
+    button:hover{
+      cursor: pointer;
+    }
+    button:active{
+      transform: translateY(5px);
+      box-shadow: none;
+    }
+    #showtime{
+      font-size: 150px;
+      position: absolute;
+      top: 150px;
+      left: 130px;
+      text-align: center;
+      width: 600px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Orbitron', sans-serif;
+      
+    }
+    #stop {
+      width: 90px;
+      height: 76px;
+      border-radius: 0px 50px 50px 0px;    
+    }
+    a{
+      text-decoration: none;
+    }
+    i{
+      font-size: 20px;
+    }
+    i:hover{
+      transform: rotate(360deg);
+      transition-duration: 6s;
+    }
+   
+  </style>
+
+</head>
+<body>
+  <div id="container">
+
+    <input type="text" id="time" placeholder="Enter Sec"
+  value=""><br>
+   <button value="start" onclick="count();" style="font-size: 15px;">Start</button>
+   
+
+   <button id="stop"onclick="javascript:window.location.reload()"><i class="fas fa-sync-alt"></i></button>
+  <div id="showtime" style="color:rgb(66, 66, 66)">
+  <span id="final"></span>
+  </div>
+  
+  </div>
+  
+  
+  <script>
+    
+    function count(){
+      var time = parseInt(document.getElementById("time").value)
+      var final =document.getElementById("final")
+
+      const showtime = document.getElementById("showtime")
+      function countdown(){
+        var hour = `${Math.floor(time/3600)}`;
+        var min =  `${Math.floor(time/60%60)}`;
+        var sec = `${Math.floor(time%60)}`;
+        // hour= checktime(hour)
+        // min = checkstime(min)
+        // sec = checktime(sec)
+        
+        final.innerHTML= `${hour}:${min}:${sec}`
+        time--
+        if(time<0){
+          final.innerHTML="<span style='color:red;font-size:150px;'>TIME'S<br>UP</span>"
+          clearInterval(count)
+        }
+        
+        // else if(isNaN!==time){
+        //   final.innerHTML= `<span style='font-size:100px'>請輸入數字</span>`
+        // }
+      }
+    var count = setInterval(countdown,1000)
+         
+    }
+    function stop(){
+      clearInterval(count)
+    }
+    function checktime(x){
+      if(x<10){
+        x+="0"+x
+      }
+      return x
+    }
+    
+  </script>
+</body>
+</html>
